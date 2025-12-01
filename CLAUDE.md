@@ -1,5 +1,8 @@
 # CLAUDE.md
 
+> **📋 Global Configuration:** Please read `~/.config/claude-code/GLOBAL_PREFERENCES.md` first
+> **📁 This Document:** Contains project-specific configuration and guidance
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Repository Overview
@@ -331,20 +334,17 @@ python benchmark.py --model gpt-3.5-turbo --metric all
 
 ## Git Commit Guidelines
 
-**IMPORTANT: When creating git commits in this repository:**
+**Follows global preferences** defined in `~/.config/claude-code/GLOBAL_PREFERENCES.md`
 
-- ❌ **DO NOT** add "Generated with Claude Code" attribution
-- ❌ **DO NOT** add "Co-Authored-By: Claude" footer
-- ✅ **DO** write clean, concise commit messages
-- ✅ **DO** follow conventional commits format (e.g., `docs:`, `feat:`, `fix:`)
+**Project-specific commit format:**
+- Use Chinese for commit messages (as this is a Chinese-focused project)
+- Reference issue numbers when applicable
 
-**Example of correct commit message:**
+**Example:**
 ```
-docs: add LLM evaluation benchmarks
+docs: 添加 LLM 评估基准测试文档
 
-- Add MMLU and HumanEval benchmark guides
-- Include hallucination detection methods
-- Update knowledge coverage analysis
+- 新增 MMLU 和 HumanEval 基准指南
+- 包含幻觉检测方法
+- 更新知识覆盖分析
 ```
-
-**Repository owner preference:** Keep commit history clean without AI tool attribution.

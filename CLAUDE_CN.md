@@ -1,5 +1,8 @@
 # CLAUDE_CN.md
 
+> **📋 全局配置：** 请先阅读 `~/.config/claude-code/GLOBAL_PREFERENCES.md`
+> **📁 本文档：** 包含本项目特定的配置和指导
+
 本文件为 Claude Code (claude.ai/code) 在此代码库中工作时提供中文指导。
 
 ## 仓库概览
@@ -331,20 +334,19 @@ python benchmark.py --model gpt-3.5-turbo --metric all
 
 ## Git 提交规范
 
-**重要：在本仓库创建 git 提交时：**
+**遵循全局配置** `~/.config/claude-code/GLOBAL_PREFERENCES.md` 中定义的规则
 
-- ❌ **不要** 添加 "Generated with Claude Code" 标记
-- ❌ **不要** 添加 "Co-Authored-By: Claude" 尾注
-- ✅ **要** 编写简洁清晰的提交信息
-- ✅ **要** 遵循约定式提交格式（如 `docs:`、`feat:`、`fix:`）
+**本项目特定要求：**
+- 使用中文编写提交信息（本项目主要面向中文用户）
+- 如有相关 issue，在提交信息中引用
 
-**正确的提交信息示例：**
+**示例：**
 ```
 docs: 添加 LLM 评估基准测试文档
 
 - 新增 MMLU 和 HumanEval 基准指南
 - 包含幻觉检测方法
 - 更新知识覆盖分析
-```
 
-**仓库所有者偏好：** 保持提交历史简洁，不添加 AI 工具标记。
+相关 issue: #123
+```
