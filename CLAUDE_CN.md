@@ -328,3 +328,23 @@ python benchmark.py --model gpt-3.5-turbo --metric all
 - **重新索引：** 修改分块参数或添加新代码文件后需要重新索引。
 - **SIMD 调试：** 如果遇到 AVX2 问题，可用 `-DCMAKE_CXX_FLAGS=""` 禁用并重新构建。
 - **API 成本：** RAG 系统会调用 OpenAI API。通过 OpenAI 控制台监控使用情况。
+
+## Git 提交规范
+
+**重要：在本仓库创建 git 提交时：**
+
+- ❌ **不要** 添加 "Generated with Claude Code" 标记
+- ❌ **不要** 添加 "Co-Authored-By: Claude" 尾注
+- ✅ **要** 编写简洁清晰的提交信息
+- ✅ **要** 遵循约定式提交格式（如 `docs:`、`feat:`、`fix:`）
+
+**正确的提交信息示例：**
+```
+docs: 添加 LLM 评估基准测试文档
+
+- 新增 MMLU 和 HumanEval 基准指南
+- 包含幻觉检测方法
+- 更新知识覆盖分析
+```
+
+**仓库所有者偏好：** 保持提交历史简洁，不添加 AI 工具标记。

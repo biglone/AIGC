@@ -328,3 +328,23 @@ python benchmark.py --model gpt-3.5-turbo --metric all
 - **Reindexing:** Required after modifying chunking parameters or adding new code files.
 - **SIMD debugging:** If AVX2 issues occur, disable with `-DCMAKE_CXX_FLAGS=""` and rebuild.
 - **API costs:** RAG system makes OpenAI API calls. Monitor usage via OpenAI dashboard.
+
+## Git Commit Guidelines
+
+**IMPORTANT: When creating git commits in this repository:**
+
+- ❌ **DO NOT** add "Generated with Claude Code" attribution
+- ❌ **DO NOT** add "Co-Authored-By: Claude" footer
+- ✅ **DO** write clean, concise commit messages
+- ✅ **DO** follow conventional commits format (e.g., `docs:`, `feat:`, `fix:`)
+
+**Example of correct commit message:**
+```
+docs: add LLM evaluation benchmarks
+
+- Add MMLU and HumanEval benchmark guides
+- Include hallucination detection methods
+- Update knowledge coverage analysis
+```
+
+**Repository owner preference:** Keep commit history clean without AI tool attribution.
