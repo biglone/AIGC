@@ -1,0 +1,16 @@
+# Build
+build/
+*.o
+*.so
+*.a
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# Test outputs
+*.log

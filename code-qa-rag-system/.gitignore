@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# Data
+data/private/
+*.db
+chroma_db/
+
+# Secrets
+.env
+credentials.json
+config_private.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store

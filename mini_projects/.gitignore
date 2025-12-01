@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Data
+*.db
+chroma_db/
+
+# IDE & OS
+.vscode/
+.DS_Store
