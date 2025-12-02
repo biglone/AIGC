@@ -1,0 +1,102 @@
+# GitHub Actions CI/CD模板
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest pytest-cov black flake8
+
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --max-line-length=88 --statistics
+
+    - name: Format check with black
+      run: |
+        black . --check
+
+    - name: Run tests
+      run: |
+        pytest tests/ -v --cov=src --cov-report=xml
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: |
+          ${{ secrets.DOCKER_USERNAME }}/llm-api:${{ github.ref_name }}
+          ${{ secrets.DOCKER_USERNAME }}/llm-api:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+    - name: Deploy to Kubernetes
+      uses: azure/k8s-deploy@v4
+      with:
+        manifests: |
+          k8s/deployment.yaml
+          k8s/service.yaml
+        images: |
+          ${{ secrets.DOCKER_USERNAME }}/llm-api:${{ github.ref_name }}
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+    - name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Deployment completed: ${{ github.ref_name }}'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
