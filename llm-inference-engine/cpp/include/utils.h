@@ -12,6 +12,7 @@
 #include <chrono>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 namespace llm_inference {
 

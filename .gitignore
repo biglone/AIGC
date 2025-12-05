@@ -21,6 +21,8 @@ data/private/
 .env
 credentials.json
 config_private.py
+cloudflared-linux-*.deb
+cloudflare*.gpg
 
 # IDE
 .vscode/
@@ -30,6 +32,7 @@ config_private.py
 # OS
 .DS_Store
 Thumbs.db
+.ipynb_checkpoints/
 
 # Logs
 *.log

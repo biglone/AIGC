@@ -10,6 +10,7 @@
 #include "utils.h"
 #include <iostream>
 #include <iomanip>
+#include <random>
 
 using namespace llm_inference;
 

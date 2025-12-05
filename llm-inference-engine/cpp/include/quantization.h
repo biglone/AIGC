@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <cmath>
 #include <algorithm>
+#include <string>
 
 namespace llm_inference {
 
